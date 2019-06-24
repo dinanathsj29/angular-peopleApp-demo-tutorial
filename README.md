@@ -13,14 +13,12 @@ Let's create/build below Angular Single Page Application (SPA) which uses/includ
   </figure>
 </p>
 
-
 <p>
   <figure>
     &nbsp;&nbsp;&nbsp; <img src="./_images-angular-peopleApp/_2-peopleapp-user-details.png" alt="Image - Output - Angular Single Page Application (SPA) with Routing and Navigation - (User Details)" title="Image - Output - Angular Single Page Application (SPA) with Routing and Navigation - (User Details)" width="1000" border="2" />
     <figcaption>&nbsp;&nbsp;&nbsp; Image - Output - Angular Single Page Application (SPA) with Routing Navigation - (User Details)</figcaption>
   </figure>
 </p>
-
 
 <p>
   <figure>
@@ -38,7 +36,6 @@ Working with existing/cloned/copied Angular App
 - To Build and run Angular App, command: `ng serve / npm start` OR `ng serve -o` OR `ng serve --open`
 - To change the port from 4200 to other port - type command:  `ng serve --port 5000`
 - To check the application in browser type path/URL: `localhost:4200 / 5000`
-
 
 01 Getting Started
 =====================
@@ -257,3 +254,464 @@ A component is self contained, reusable piece of UI made up of 3 important parts
 ```
 
 - Learn more about [Angular Material Icon - https://material.io/tools/icons/?style=baseline](https://material.io/tools/icons/?style=baseline) and [Google Fonts - https://fonts.google.com/](https://fonts.google.com/)
+
+1.11. Sidebar component (sidebar.component.html)
+---------------------
+- **routerLink**
+    - The attribute/directive for binding a clickable HTML element `(instead of html <a> anchor href will use routerLink)` to a route which denotes link/view name to load/show in `(<router-outlet>)`
+
+> **Syntax & Example**: sidebar.component.html
+```html
+<nav>
+  <ul>
+    <li>
+      <!-- -->
+      <!-- <a routerLink="" [class.activated]="currentUrl == '/'">
+        <i class="material-icons">supervised_user_circle</i>
+      </a> -->
+
+      <a alt="User" title="User" routerLink="" routerLinkActive="activated" [routerLinkActiveOptions]="{exact: true}"> 
+        <i class="material-icons">supervised_user_circle</i>
+      </a>
+
+      <a alt="Post" title="Post" routerLink="posts" routerLinkActive="activated" [routerLinkActiveOptions]="{exact: true}">
+        <i class="material-icons">message</i>
+      </a>
+    </li>
+
+    <!-- <li>
+      <a routerLink="posts" [class.activated]="currentUrl == '/posts'">
+        <i class="material-icons">message</i>
+      </a>
+    </li> -->
+
+  </ul>
+</nav>
+```
+
+1.12. Angular with SCSS/CSS
+---------------------
+- CSS is used to make the application look better and beautiful, in the current project will use the power of `scss/sass` to change look-feel, also make application slick and intuitive
+
+styles.scss
+---------------------
+> **Syntax & Example**: styles.scss
+```scss
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+// $main-color:#e91e63;
+
+body {
+  margin: 0;
+  background: #F2F2F2;
+  font-family: 'Montserrat', sans-serif;
+  height: 100vh;
+  color: #2D2E2E;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: 70px auto;
+  height: 100%;
+
+    #content {
+        padding: 30px 50px;
+
+        ul {
+            list-style-type: none;
+            margin:0;
+            padding:0;
+        
+            li {
+                background: #fff;
+                border-radius: 10px;
+                padding: 10px;
+                margin-bottom: 10px;
+        
+                a {
+                    font-size: 1.5em;
+                    text-decoration: none;
+                    font-weight: bold;
+                    color:#e91e63; //#00A8FF;
+                }
+        
+                ul {
+                    margin-top: 20px;
+                    
+                    li {
+                        padding:0;
+                        background:none;
+        
+                        a {
+                            font-size: 1em;
+                            font-weight: 300;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+sidebar.component.scss
+---------------------
+
+> **Syntax & Example**: sidebar.component.scss
+```scss
+nav {
+    background: #2D2E2E;
+    height: 100%;
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+
+            a {
+                color: #e91e63; //#fff;
+                padding: 20px;
+                display: block;
+            }
+
+            .activated {
+                background-color: #e91e63;
+                color: #fff;
+            }
+        }
+    }
+}
+```
+
+1.13. Angular Routing and Navigation
+---------------------
+- In sidebar component we have used 2 icons for User & Posts respectively also `routerLink="posts"`, let's work with routes/paths in `/src/app/app-routing.module.ts`
+
+> **Syntax & Example**: app-routing.module.ts
+```ts
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { UsersComponent } from './component/users/users.component';
+import { DetailsComponent } from './component/details/details.component';
+import { PostsComponent } from './component/posts/posts.component';
+import { PagenotfoundComponent } from './component/pagenotfound/pagenotfound.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: UsersComponent
+  },
+  {
+    path: 'users',
+    component: UsersComponent
+  },
+  {
+    path: 'details/:id',
+    component: DetailsComponent
+  },
+  {
+    path: 'posts',
+    component: PostsComponent
+  },
+  {
+    path: 'details',
+    component: PagenotfoundComponent
+  },
+  {
+    path: 'user',
+    component: PagenotfoundComponent
+  },
+  {
+    path: 'post',
+    component: PagenotfoundComponent
+  },
+  {
+    path: '**',
+    component: PagenotfoundComponent
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
+
+- I hope you remember that `app-routing.module.ts` contains all component path details user need to visit/navigate on some clicks or action. Here in `const routes: Routes = [ ]` array we have created/entered different object with `path` and `component` property which user will navigate
+
+1.14. Angular Services and HTTPClient - Fetching Data from API
+---------------------
+- Service is a class with a specific purpose and widely used to:
+    - Share data - Between multiple pages/components
+    - Implement application logic - Calculations, Repetitive tasks/functionalities, etc.
+    - External Interaction - Database connectivity
+- Services are a great and awesome way to share information among multiple classes/components, just create a service and inject it in respective classes/components
+&nbsp;
+&nbsp;
+- In current application to show Users List in UsersComponent, Posts in PostsComponent we want to fetch a list of users from a 3rd party free public API - `https://jsonplaceholder.typicode.com/users`
+- Let's create a service with Angular CLI command: `ng generate service data` OR `ng g s data`
+- Http & HttpClientModule: Till Angular 4 - Http module used, In `Angular 5 - HttpClientModule used (HttpClientModule provides simplified APIs to work with HTTP functionality)`
+
+> **Syntax & Example**: defualt/generic service ts file
+```ts
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+
+  constructor() { }
+}
+```
+
+> **Syntax & Example**: data.service.ts
+```ts
+import { Injectable } from '@angular/core';
+// httpClient
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+  //public api url path to get user data
+  private urlUsersData = 'https://jsonplaceholder.typicode.com/users';
+  private urlUserData = 'https://jsonplaceholder.typicode.com/users/';
+  private urlPostsData = 'https://jsonplaceholder.typicode.com/posts';
+
+  //create an instance of it through dependency injection within the constructor
+  constructor(private httpClient: HttpClient) { }
+
+  //get users data from public api 
+  getUsersData() {
+    // default returns of get/post & other rest api method is 'OBSERVABLEs'
+    // return this.httpClient.get(this.urlUsersData);
+
+    // return PROMISE with .toPROMISE() method
+    return this.httpClient.get(this.urlUsersData).toPromise();
+  }
+
+  //get single user data from public api 
+  getUserData(_userId) {
+    // default returns of get/post & other rest api method is 'OBSERVABLEs'
+    // return this.httpClient.get(this.urlUserData+_userId);
+
+    // return PROMISE with .toPROMISE() method
+    return this.httpClient.get(this.urlUserData+_userId).toPromise();
+  }
+
+  //get posts data from public api 
+  getPostsData() {
+    // default returns of get/post & other rest api method is 'OBSERVABLEs'
+    // return this.httpClient.get(this.urlPostsData);
+
+    // return PROMISE with .toPROMISE() method
+    return this.httpClient.get(this.urlPostsData).toPromise();
+  }
+
+}
+```
+
+1.15. User component 
+---------------------
+- Import `data service` in each and every component which needs to fetch/show data and subscribe in respective method
+
+> **Syntax & Example**: users.component.ts
+```ts
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+// import common services
+import { DataService } from '../../services/data.service';
+
+@Component({
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.scss'],
+})
+
+export class UsersComponent implements OnInit {
+
+  // to hold users data coming from public API
+  usersData$: Object;
+
+  constructor(private _dataService:DataService) { }
+
+  ngOnInit() {
+
+    /* // subscribe
+    this._dataService.getUsersData().subscribe(
+      (_result) => {
+        console.log('success block - users - _result : ' , _result);
+        this.usersData$ = _result;
+        console.log('usersData$ : ' , this.usersData$);
+      },
+      (_error) => {
+        console.log('error block - users - : ' , _error);
+      },
+      () => {
+        console.log('after complition block users');
+      }
+    ) // subscribe
+    */
+    
+    // promise
+    this._dataService.getUsersData().then(
+      (_result) => {
+        if(_result == null){
+          console.log('user success block - BUT NO DATA : ' , _result);
+        } else {
+          console.log('users success block - users - _result : ' , _result);
+          this.usersData$ = _result;
+          console.log('usersData$ : ' , this.usersData$);
+        } // else
+      })
+      .catch(function(error){
+        console.log('users error in Promise is : ', error);
+      })
+
+  } // ngOnInit
+  
+} // UsersComponent
+
+```
+
+> **Syntax & Example**: users.component.html
+- Use `*ngFor` directive to loop over `usersData$` list Object
+
+```html
+<h1>Users List:</h1>
+
+<ul>
+  <li *ngFor="let user of usersData$">
+    <a routerLink="/details/{{user.id}}" title="{{ user.name }} | Click to get more Details"> {{ user.name }}</a>
+
+    <ul>
+      <li>{{ user.email }}</li>
+      <li><a href="http://{{ user.website }}">{{ user.website }}</a></li>
+    </ul>
+
+  </li>
+</ul>
+```
+
+1.16. Angular Animation
+---------------------
+- To access/use the animation library in an angular application, we need to first install it from the console with command: `npm install @angular/animations@latest --save`
+- `app.module.ts` - import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; imports: [ 
+    // modules
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule
+  ],
+- In respective compoents which needs to use/show animation, let's import: `import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';`
+- To make this animation work, in users.component.html file reference the animation trigger: `<ul [@usersListStagger]="usersData$">`
+
+> **Syntax & Example**: users.component.ts
+```ts
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+// import animation functions
+import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
+
+// import common services
+import { DataService } from '../../services/data.service';
+
+@Component({
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.scss'],
+  // Add animations properties here:
+  animations: [
+    trigger('usersListStagger', [
+      transition('* <=> *', [
+        query(
+          ':enter',
+          [
+            style({ opacity: 0, transform: 'translateY(-50px) translateX(-50px)' }),
+            stagger(
+              '550ms',
+              animate(
+                '100ms ease-out',
+                style({ opacity: 1, transform: 'translateY(0px)' })
+              )
+            )
+          ],
+          { optional: true }
+        ),
+        query(':leave', animate('50ms', style({ opacity: 0 })), {
+          optional: true
+        })
+      ])
+    ])
+  ]
+})
+
+export class UsersComponent implements OnInit {
+
+  // to hold users data coming from public API
+  usersData$: Object;
+
+  constructor(private _dataService:DataService) { }
+
+  ngOnInit() {
+
+    /* // subscribe
+    this._dataService.getUsersData().subscribe(
+      (_result) => {
+        console.log('success block - users - _result : ' , _result);
+        this.usersData$ = _result;
+        console.log('usersData$ : ' , this.usersData$);
+      },
+      (_error) => {
+        console.log('error block - users - : ' , _error);
+      },
+      () => {
+        console.log('after complition block users');
+      }
+    ) // subscribe
+    */
+    
+    // promise
+    this._dataService.getUsersData().then(
+      (_result) => {
+        if(_result == null){
+          console.log('user success block - BUT NO DATA : ' , _result);
+        } else {
+          console.log('users success block - users - _result : ' , _result);
+          this.usersData$ = _result;
+          console.log('usersData$ : ' , this.usersData$);
+        } // else
+      })
+      .catch(function(error){
+        console.log('users error in Promise is : ', error);
+      })
+
+  } // ngOnInit
+  
+} // UsersComponent
+```
+
+> **Syntax & Example**: users.component.html
+```html
+<h1>Users List:</h1>
+
+<ul [@usersListStagger]="usersData$">
+  <li *ngFor="let user of usersData$">
+    <a routerLink="/details/{{user.id}}" title="{{ user.name }} | Click to get more Details"> {{ user.name }}</a>
+
+    <ul>
+      <li>{{ user.email }}</li>
+      <li><a href="http://{{ user.website }}">{{ user.website }}</a></li>
+    </ul>
+
+  </li>
+</ul>
+```
