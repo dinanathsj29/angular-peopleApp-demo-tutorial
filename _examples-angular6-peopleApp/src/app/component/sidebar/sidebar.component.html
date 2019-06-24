@@ -1,0 +1,25 @@
+<nav>
+  <ul>
+    <li>
+      <!-- -->
+      <!-- <a routerLink="" [class.activated]="currentUrl == '/'">
+        <i class="material-icons">supervised_user_circle</i>
+      </a> -->
+
+      <a alt="User" title="User" routerLink="" routerLinkActive="activated" [routerLinkActiveOptions]="{exact: true}"> 
+        <i class="material-icons">supervised_user_circle</i>
+      </a>
+
+      <a alt="Post" title="Post" routerLink="posts" routerLinkActive="activated" [routerLinkActiveOptions]="{exact: true}">
+        <i class="material-icons">message</i>
+      </a>
+    </li>
+
+    <!-- <li>
+      <a routerLink="posts" [class.activated]="currentUrl == '/posts'">
+        <i class="material-icons">message</i>
+      </a>
+    </li> -->
+
+  </ul>
+</nav>

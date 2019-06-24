@@ -1,0 +1,27 @@
+h3 {
+  font-size: 1.5em;
+  text-decoration: none;
+  font-weight: bold;
+  color: #e91e63;
+}
+
+a {
+
+  &:link {
+    font-size: 1em;
+    font-weight: 300;
+    text-decoration: underline;
+    color: #e91e63;
+  }
+
+}
+
+ul {
+
+  li {
+
+    strong {
+      color: #e91e63;
+    }
+  }
+}
