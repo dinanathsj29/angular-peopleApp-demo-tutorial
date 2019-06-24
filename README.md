@@ -518,6 +518,29 @@ export class DataService {
 }
 ```
 
+- To get response/results data structure details, please check the local file: `_api_readme_result.txt`,  in this file API result pasted for reference purpose
+
+<p>
+  <figure>
+    &nbsp;&nbsp;&nbsp; <img src="./_images-angular-peopleApp/1.14.1-jsonplaceholder-Fake-Online-REST-API.png" alt="Image - Output - jsonplaceholder Fake Online REST API.png" title="Image - Output - jsonplaceholder Fake Online REST API.png" width="1000" border="2" />
+    <figcaption>&nbsp;&nbsp;&nbsp; Image - Output - jsonplaceholder Fake Online REST API.png</figcaption>
+  </figure>
+</p>
+
+<p>
+  <figure>
+    &nbsp;&nbsp;&nbsp; <img src="./_images-angular-peopleApp/1.14.2-jsonplaceholder-users-data.png" alt="Image - Output - jsonplaceholder Users" title="Image - Output - jsonplaceholder Users" width="1000" border="2" />
+    <figcaption>&nbsp;&nbsp;&nbsp; Image - Output - jsonplaceholder Users</figcaption>
+  </figure>
+</p>
+
+<p>
+  <figure>
+    &nbsp;&nbsp;&nbsp; <img src="./_images-angular-peopleApp/1.14.3-jsonplaceholder-posts-data.png" alt="Image - Output - jsonplaceholder Posts" title="Image - Output - jsonplaceholder Posts" width="1000" border="2" />
+    <figcaption>&nbsp;&nbsp;&nbsp; Image - Output - jsonplaceholder Posts</figcaption>
+  </figure>
+</p>
+
 1.15. User component 
 ---------------------
 - Import `data service` in each and every component which needs to fetch/show data and subscribe in respective method
